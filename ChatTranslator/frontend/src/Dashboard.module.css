@@ -1,0 +1,24 @@
+/* Dashboard.module.css */
+.dashboardContainer {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.mainContent {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loadingContainer {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #6366f1;
+}
