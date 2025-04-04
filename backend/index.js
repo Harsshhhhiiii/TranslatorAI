@@ -8,7 +8,7 @@ import imageRoutes from "./routes/imageRoutes.js";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 10000;
 
 // Middleware
 app.use(cors({
