@@ -15,10 +15,11 @@ const ChatInterface = () => {
             const formData = new FormData();
             formData.append('image', file);
 
-            const response = await fetch('http://localhost:8080/api/translate-image', {
+            const response = await fetch('https://translatorai.onrender.com/api/translate-image', {
                 method: 'POST',
                 body: formData,
             });
+            
 
             const data = await response.json();
             
