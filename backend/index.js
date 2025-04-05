@@ -12,8 +12,13 @@ const PORT = process.env.PORT || 10000;
 
 // Middleware
 app.use(cors({
-    origin: ['http://localhost:5173',"https://translator-ai-nine.vercel.app","https://translator-ai-harshits-projects-99ccb490.vercel.app"],
-    credentials: true
+    origin: ['http://localhost:5173',
+        "https://translator-ai-nine.vercel.app",
+        "https://translator-ai-harshits-projects-99ccb490.vercel.app",
+        "https://translator-ai-nine.vercel.appflowName=GeneralOAuthFlow"
+    
+    ],
+    credentials: true                   
 }));
 app.use(express.json());
 
