@@ -4,7 +4,7 @@ import {
     validateImageType,
     processImage 
 } from "../controllers/imageCotroller.js";
-
+import { saveResponse } from "../controllers/responseController.js";
 const router = express.Router();
 
 router.post('/translate-image', 
@@ -12,5 +12,7 @@ router.post('/translate-image',
     validateImageType,
     processImage
 );
+
+router.post('/save-response',  saveResponse);
 
 export default router;
