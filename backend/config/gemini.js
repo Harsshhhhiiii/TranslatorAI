@@ -23,7 +23,7 @@ export const detectAndTranslate = async (imageBuffer, mimeType) => {
             2. If text is in English, translate to Hindi
             3. If text is in Hindi, translate to English
             4. If text is in another language, translate to both English and Hindi
-            5. Return only the translated text(s) in format: "Translation: <text>"
+            5. Return only the translated texts and no additional information not even Translation written explicitly, just give the translated text."
             6. If no text found, return "No text detected in image"`;
 
         const result = await model.generateContent([prompt, imagePart]);

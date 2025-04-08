@@ -38,6 +38,7 @@
     border-radius: 15px;
     padding: 10px 15px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border-top: 1px solid #e0e0e0;
 }
 
 .messageInput {
@@ -125,29 +126,97 @@
     transform: scale(1.1);
 }
 
-/* Rest of your existing message bubble styles remain the same */
+.splitPane {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
 
+.leftPane, .rightPane {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    background: white;
+    margin: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
 
-/* In ChatInterface.module.css */
+.paneHeader {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    padding: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 1rem;
+}
+
+.messagesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 1rem;
+}
+
+.messageBubble {
+    padding: 1rem;
+    border-radius: 12px;
+    max-width: 80%;
+    position: relative;
+}
+
+.userMessage {
+    background: #6366f1;
+    color: white;
+    align-self: flex-start;
+}
+
 .aiMessage {
-    background: #2d3748; /* Dark slate background */
+    background: #2d3748;
     color: white;
     border-radius: 15px 15px 15px 0;
-    border: 1px solid #4a5568; /* Subtle border */
+    border: 1px solid #4a5568;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .errorMessage {
-    background: #fed7d7; /* Light red background */
-    color: #c53030; /* Dark red text */
+    background: #fed7d7;
+    color: #c53030;
     border: 2px solid #feb2b2;
 }
 
-.messageContent {
-    color: inherit; /* Inherit parent text color */
+.messageMedia {
+    position: relative;
+    margin-bottom: 0.5rem;
 }
 
-/* Add this to ensure text remains visible when editing */
+.messageImage {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.imageOverlay {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.timestamp {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 0.5rem;
+    display: block;
+}
+
+.messageContent {
+    color: inherit;
+}
+
 .messageContent[contenteditable="true"]:focus {
     background-color: rgba(255,255,255,0.1);
     color: white;

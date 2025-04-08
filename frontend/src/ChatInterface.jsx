@@ -97,45 +97,72 @@ const ChatInterface = () => {
 
     return (
         <div className={styles.chatContainer}>
-            <div className={styles.chatMessages}>
-                {messages.map((msg, index) => (
-                    <div key={index} className={`${styles.messageContainer} ${
-                        msg.isUser ? styles.userContainer : styles.aiContainer
-                    }`}>
-                        <div className={`${styles.messageBubble} ${
-                            msg.isError ? styles.errorMessage :
-                            msg.isUser ? styles.userMessage : styles.aiMessage
-                        }`}>
-                            {msg.file && (
-                                <div className={styles.messageMedia}>
-                                    <img 
-                                        src={URL.createObjectURL(msg.file)} 
-                                        alt="attachment"
-                                        className={styles.messageImage}
-                                    />
-                                    <div className={styles.imageOverlay}>📷 Image</div>
+            <div className={styles.splitPane}>
+                {/* Left Column for User Messages */}
+                <div className={styles.leftPane}>
+                    <div className={styles.paneHeader}>Your Messages</div>
+                    <div className={styles.messagesContainer}>
+                        {messages.filter(msg => msg.isUser).map((msg, index) => (
+                            <div key={`user-${index}`} className={styles.messageContainer}>
+                                <div className={`${styles.messageBubble} ${styles.userMessage}`}>
+                                    {msg.file && (
+                                        <div className={styles.messageMedia}>
+                                            <img 
+                                                src={URL.createObjectURL(msg.file)} 
+                                                alt="attachment"
+                                                className={styles.messageImage}
+                                            />
+                                            <div className={styles.imageOverlay}>📷 Image</div>
+                                        </div>
+                                    )}
+                                    <div className={styles.messageContent}>
+                                        {msg.text}
+                                    </div>
+                                    <span className={styles.timestamp}>
+                                        {new Date(msg.timestamp).toLocaleTimeString([], {
+                                            hour: '2-digit',
+                                            minute: '2-digit'
+                                        })}
+                                    </span>
                                 </div>
-                            )}
-                            <div 
-                                className={styles.messageContent}
-                                contentEditable={!msg.isUser}
-                                suppressContentEditableWarning
-                                onBlur={(e) => handleEditMessage(e.target.textContent, index)}
-                            >
-                                {msg.text}
                             </div>
-                            <span className={styles.timestamp}>
-                                {new Date(msg.timestamp).toLocaleTimeString([], {
-                                    hour: '2-digit',
-                                    minute: '2-digit'
-                                })}
-                            </span>
-                        </div>
+                        ))}
                     </div>
-                ))}
+                </div>
+
+                {/* Right Column for AI Responses */}
+                <div className={styles.rightPane}>
+                    <div className={styles.paneHeader}>AI Responses</div>
+                    <div className={styles.messagesContainer}>
+                        {messages.filter(msg => !msg.isUser).map((msg, index) => (
+                            <div key={`ai-${index}`} className={styles.messageContainer}>
+                                <div className={`${styles.messageBubble} ${
+                                    msg.isError ? styles.errorMessage : styles.aiMessage
+                                }`}>
+                                    <div 
+                                        className={styles.messageContent}
+                                        contentEditable
+                                        suppressContentEditableWarning
+                                        onBlur={(e) => handleEditMessage(e.target.textContent, index * 2 + 1)}
+                                    >
+                                        {msg.text}
+                                    </div>
+                                    <span className={styles.timestamp}>
+                                        {new Date(msg.timestamp).toLocaleTimeString([], {
+                                            hour: '2-digit',
+                                            minute: '2-digit'
+                                        })}
+                                    </span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
-            
+
+            {/* Input Container (stays at bottom) */}
             <div className={styles.inputContainer}>
+                {/* [Keep the input section unchanged] */}
                 {previewURL && (
                     <div className={styles.imagePreview}>
                         <img src={previewURL} alt="Preview" />
